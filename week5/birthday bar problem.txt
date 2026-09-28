@@ -1,0 +1,51 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String firstLine = br.readLine();
+        if (firstLine == null || firstLine.trim().isEmpty()) {
+            return;
+        }
+        int n = Integer.parseInt(firstLine.trim());
+        String secondLine = br.readLine();
+        if (secondLine == null || secondLine.trim().isEmpty()) {
+            return;
+        }
+        StringTokenizer st = new StringTokenizer(secondLine);
+        int[] s = new int[n];
+        for (int i = 0; i < n; i++) {
+            s[i] = Integer.parseInt(st.nextToken());
+        }
+        String thirdLine = br.readLine();
+        if (thirdLine == null || thirdLine.trim().isEmpty()) {
+            return;
+        }
+        st = new StringTokenizer(thirdLine);
+        int d = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        System.out.println(birthday(s, d, m));
+    }
+    public static int birthday(int[] s, int d, int m) {
+        if (s == null || s.length < m) {
+            return 0;
+        }
+        int currentSum = 0;
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            currentSum += s[i];
+        }
+        if (currentSum == d) {
+            count++;
+        }
+        for (int i = m; i < s.length; i++) {
+            currentSum += s[i] - s[i - m];
+            if (currentSum == d) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
