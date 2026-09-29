@@ -1,0 +1,23 @@
+import java.util.*;
+class Printer{
+public <T> void printArray(T[] array){
+for(T element:array)
+System.out.println(element);
+}
+}
+public class Solution{
+public static void main(String[] args){
+Scanner sc=new Scanner(System.in);
+int n=sc.nextInt();
+Integer[] intArray=new Integer[n];
+for(int i=0;i<n;i++)
+intArray[i]=sc.nextInt();
+int m=sc.nextInt();
+String[] stringArray=new String[m];
+for(int i=0;i<m;i++)
+stringArray[i]=sc.next();
+Printer printer=new Printer();
+printer.printArray(intArray);
+printer.printArray(stringArray);
+}
+}

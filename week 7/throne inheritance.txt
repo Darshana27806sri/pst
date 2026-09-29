@@ -1,0 +1,28 @@
+import java.util.*;
+class ThroneInheritance{
+String king;
+Map<String,List<String>> children=new HashMap<>();
+Set<String>dead=new HashSet<>();
+public ThroneInheritance(String kingName){
+king=kingName;
+children.put(king,new ArrayList<>());
+}
+public void birth(String parentName,String childName){
+children.get(parentName).add(childName);
+children.put(childName,new ArrayList<>());
+}
+public void death(String name){
+dead.add(name);
+}
+public List<String> getInheritanceOrder(){
+List<String> result=new ArrayList<>();
+dfs(king,result);
+return result;
+}
+void dfs(String name,List<String> result){
+if(!dead.contains(name))
+result.add(name);
+for(String child:children.get(name))
+dfs(child,result);
+}
+}
